@@ -70,3 +70,5 @@ function getNotifier() {
     ? notifications.BadgeUpdateManager.CreateBadgeUpdaterForApplication()
     : notifications.BadgeUpdateManager.CreateBadgeUpdaterForApplication(options.appId);
 }
+
+module.exports = BadgeNotification;
