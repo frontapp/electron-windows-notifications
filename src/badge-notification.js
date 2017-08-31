@@ -4,7 +4,7 @@ const EventEmitter = require('events');
 const util = require('util');
 const xmlEscape = require('xml-escape');
 
-const { getAppId, log, getIsCentennial } = require('./utils');
+const { log, getIsCentennial } = require('./utils');
 
 /**
  * A notification similar to the native Windows BadgeNotification.
@@ -14,7 +14,7 @@ class BadgeNotification extends EventEmitter {
     super(...arguments);
 
     const value = parseValue(options.value);
-    const appId = options.appId || getAppId();
+    const appId = options.appId;
 
     const escapedValue = xmlEscape(value.toString());
     const formattedXml = util.format('<badge value="%d"/>', escapedValue);
@@ -33,11 +33,6 @@ class BadgeNotification extends EventEmitter {
 
     this.badge = new notifications.BadgeNotification(xmlDocument);
     this.notifier = getNotifier(appId);
-  }
-
-  static clear() {
-    const notifier = getNotifier();
-    notifier.clear();
   }
 
   show() {
@@ -65,10 +60,8 @@ function parseValue(value) {
   return numberValue;
 }
 
-function getNotifier(appId) {
-  return getIsCentennial()
-    ? notifications.BadgeUpdateManager.createBadgeUpdaterForApplication()
-    : notifications.BadgeUpdateManager.createBadgeUpdaterForApplication(appId);
+function getNotifier() {
+  return notifications.BadgeUpdateManager.createBadgeUpdaterForApplication();
 }
 
 module.exports = BadgeNotification;
