@@ -30,6 +30,7 @@ if (process.platform !== 'win32' || !(win === '10.0' || win === '8.1' || win ===
   _exports = {
     ToastNotification: require('./toast-notification'),
     TileNotification: require('./tile-notification'),
+    BadgeNotification: require('./badge-notification'),
     SecondaryTile: require('./secondary-tile'),
     TileUpdater: require('./tile-updater'),
     history: require('./history'),
