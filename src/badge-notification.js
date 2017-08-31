@@ -17,7 +17,7 @@ class BadgeNotification extends EventEmitter {
     const appId = options.appId || getAppId();
 
     const escapedValue = xmlEscape(value.toString());
-    const formattedXml = util.format('<badge value="%s"/>', escapedValue);
+    const formattedXml = util.format('<badge value="%d"/>', escapedValue);
 
     let xmlDocument = new xml.XmlDocument();
 
