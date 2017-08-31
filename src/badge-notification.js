@@ -32,7 +32,7 @@ class BadgeNotification extends EventEmitter {
     log(formattedXml);
 
     this.badge = new notifications.BadgeNotification(xmlDocument);
-    this.notifier = getNotifier();
+    this.notifier = getNotifier(appId);
   }
 
   static clear() {
@@ -65,10 +65,10 @@ function parseValue(value) {
   return numberValue;
 }
 
-function getNotifier() {
+function getNotifier(appId) {
   return getIsCentennial()
     ? notifications.BadgeUpdateManager.CreateBadgeUpdaterForApplication()
-    : notifications.BadgeUpdateManager.CreateBadgeUpdaterForApplication(options.appId);
+    : notifications.BadgeUpdateManager.CreateBadgeUpdaterForApplication(appId);
 }
 
 module.exports = BadgeNotification;
