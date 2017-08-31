@@ -44,7 +44,7 @@ class BadgeNotification extends EventEmitter {
     if (!this.badge || !this.notifier)
       return;
 
-    this.notifier.update(bagde);
+    this.notifier.update(this.badge);
   }
 }
 
@@ -67,8 +67,8 @@ function parseValue(value) {
 
 function getNotifier(appId) {
   return getIsCentennial()
-    ? notifications.BadgeUpdateManager.CreateBadgeUpdaterForApplication()
-    : notifications.BadgeUpdateManager.CreateBadgeUpdaterForApplication(appId);
+    ? notifications.BadgeUpdateManager.createBadgeUpdaterForApplication()
+    : notifications.BadgeUpdateManager.createBadgeUpdaterForApplication(appId);
 }
 
 module.exports = BadgeNotification;
